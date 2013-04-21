@@ -1,0 +1,45 @@
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'com.google.guava:guava:14.0.1'
+        testCompile 'junit:junit:4.11'
+    }
+
+}
+
+subprojects {
+
+    version = '1.0'
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+
+    task sourcesJar(type: Jar, dependsOn:classes) {
+        classifier = 'sources'
+        from sourceSets.main.allJava.srcDirs
+        include '**/*.java'
+    }
+    build.dependsOn sourcesJar
+}
+
+project(":mvc") {
+    dependencies {
+        compile 'javax.servlet:servlet-api:3.0-alpha-1'
+        compile fileTree(dir: 'libs', include: '*.jar')
+    }
+}
+
+project(":example") {
+    apply plugin: 'jetty'
+
+    dependencies {
+        compile project(':mvc')
+    }
+}
