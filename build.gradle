@@ -33,7 +33,7 @@ subprojects {
 project(":mvc") {
     dependencies {
         compile 'javax.servlet:servlet-api:3.0-alpha-1'
-        compile fileTree(dir: 'libs', include: '*.jar')
+        compile files('../../wheel1/build/libs/wheel1.jar')
     }
 }
 

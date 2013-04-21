@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.stub;
 
-
 public class RouterTest {
 
     private Router router;
@@ -21,7 +20,7 @@ public class RouterTest {
 
     @Before
     public void setUp() throws Exception {
-        IocContainer container = new IocContainerBuilder().withPackageName("testPackage.controller").build();
+        IocContainer container = new IocContainerBuilder().build();
         router = new Router(container);
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
@@ -29,7 +28,7 @@ public class RouterTest {
 
     @Test
     public void test_router() throws Exception {
-        stub(request.getServletPath()).toReturn("/");
+        stub(request.getPathInfo()).toReturn("/");
 
         router.register("/", TestController.class, TestController::testAction);
 

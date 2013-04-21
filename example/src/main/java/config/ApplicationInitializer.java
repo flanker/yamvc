@@ -14,9 +14,4 @@ public class ApplicationInitializer implements Initializer {
         router.register("/about", HomeController.class, HomeController::about);
     }
 
-    @Override
-    public String getPackageName() {
-        return "controller";
-    }
-
 }

@@ -15,15 +15,14 @@ public class DispatcherServlet extends HttpServlet {
     private Router router;
 
     public DispatcherServlet() throws Exception {
-        IocContainer initContainer = new IocContainerBuilder().withPackageName("config").build();
-        initializer = (Initializer) initContainer.getBeanByCompatibleType(Initializer.class);
+        IocContainer container = new IocContainerBuilder().withPackageName("config").build();
+        initializer = container.getBeanByCompatibleType(Initializer.class);
+        router = new Router(container);
     }
 
     @Override
     public void init() {
         try {
-            IocContainer controllerContainer = new IocContainerBuilder().withPackageName(initializer.getPackageName()).build();
-            router = new Router(controllerContainer);
             initializer.config(router);
         } catch (Exception e) {
             e.printStackTrace();

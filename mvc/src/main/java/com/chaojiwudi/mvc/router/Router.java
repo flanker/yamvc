@@ -16,6 +16,7 @@ public class Router {
     }
 
     public <T> void register(String path, Class<T> clazz, RouterAction<T> action) {
+        container.register(clazz);
         routers.put(path, new Rule(clazz, action));
     }
 
