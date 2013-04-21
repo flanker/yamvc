@@ -1,5 +1,7 @@
 package com.chaojiwudi.mvc.router;
 
+import core.IocContainer;
+import core.IocContainerBuilder;
 import org.junit.Before;
 import testPackage.controller.TestController;
 import org.junit.Test;
@@ -19,7 +21,8 @@ public class RouterTest {
 
     @Before
     public void setUp() throws Exception {
-        router = new Router("testPackage.controller");
+        IocContainer container = new IocContainerBuilder().withPackageName("testPackage.controller").build();
+        router = new Router(container);
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
     }

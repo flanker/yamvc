@@ -1,8 +1,9 @@
 .gradle/
+out/
 example/example.iml
+example/build/
 mvc/build/
 mvc/mvc.iml
-out/
 yamvc.iml
 yamvc.ipr
 yamvc.iws
