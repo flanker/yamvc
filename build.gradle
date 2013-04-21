@@ -9,6 +9,7 @@ allprojects {
     dependencies {
         compile 'com.google.guava:guava:14.0.1'
         testCompile 'junit:junit:4.11'
+        testCompile 'org.mockito:mockito-all:1.9.5'
     }
 
 }

@@ -3,6 +3,8 @@ package com.chaojiwudi.mvc.router;
 import core.IocContainer;
 import core.IocContainerBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 public class Router {
@@ -18,10 +20,9 @@ public class Router {
         routers.put(path, new Rule(clazz, action));
     }
 
-    public void run(String path) throws Exception {
-        Rule rule = routers.get(path);
-        rule.getAction().run(container.getBean(rule.getClazz()));
+    public void run(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Rule rule = routers.get(request.getServletPath());
+        rule.getAction().run(container.getBean(rule.getClazz()), request, response);
     }
-
 }
 
