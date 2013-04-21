@@ -1,5 +1,6 @@
 package com.chaojiwudi.mvc.router;
 
+import com.chaojiwudi.mvc.controller.Controller;
 import core.IocContainer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,10 @@ public class Router {
     public void run(HttpServletRequest request, HttpServletResponse response) {
         Rule rule = routers.get(request.getPathInfo());
         try {
-            rule.getAction().run(container.getBean(rule.getClazz()), request, response);
+            Controller controller = (Controller) container.getBean(rule.getClazz());
+            controller.setRequest(request);
+            controller.setResponse(response);
+            rule.getAction().run(controller);
         } catch (Exception e) {
             e.printStackTrace();
         }
