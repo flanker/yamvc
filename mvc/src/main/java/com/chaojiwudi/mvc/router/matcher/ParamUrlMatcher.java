@@ -15,14 +15,14 @@ public class ParamUrlMatcher extends UrlMatcher {
     }
 
     @Override
-    public ParseResult parse(String requestUrl) {
+    public UrlResult parse(String requestUrl) {
         Matcher matcher = pattern.matcher(requestUrl);
         if (matcher.matches()) {
             HashMap<String, String> params = new HashMap<>();
             params.put(paramName, matcher.group(1));
-            return new ParseResult(true, params);
+            return new UrlResult(true, params);
         } else {
-            return new ParseResult(false);
+            return new UrlResult(false);
         }
 
     }

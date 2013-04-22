@@ -1,8 +1,9 @@
 package com.chaojiwudi.mvc.router;
 
+import com.chaojiwudi.mvc.router.action.RouteParseResult;
 import com.chaojiwudi.mvc.router.action.RouterAction;
 import com.chaojiwudi.mvc.router.action.Rule;
-import com.chaojiwudi.mvc.router.matcher.ParseResult;
+import com.chaojiwudi.mvc.router.matcher.UrlResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,11 @@ public class Routes {
         routers.add(new Route(routePath, clazz, action));
     }
 
-    public Rule parse(String requestUrl) {
+    public RouteParseResult parse(String requestUrl) {
         for (Route route : routers) {
-            ParseResult parseResult = route.parse(requestUrl);
-            if (parseResult.isMatch()) {
-                return route.getRule();
+            UrlResult urlResult = route.parse(requestUrl);
+            if (urlResult.isMatch()) {
+                return new RouteParseResult(urlResult, route.getRule());
             }
         }
         return null;

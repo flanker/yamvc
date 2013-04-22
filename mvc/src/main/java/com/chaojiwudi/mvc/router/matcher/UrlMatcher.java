@@ -20,5 +20,5 @@ public abstract class UrlMatcher {
         }
     }
 
-    public abstract ParseResult parse(String requestUrl);
+    public abstract UrlResult parse(String requestUrl);
 }

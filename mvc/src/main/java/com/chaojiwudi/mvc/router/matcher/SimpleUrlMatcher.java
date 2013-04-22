@@ -9,7 +9,7 @@ public class SimpleUrlMatcher extends UrlMatcher {
     }
 
     @Override
-    public ParseResult parse(String requestUrl) {
-        return new ParseResult(url.equals(requestUrl));
+    public UrlResult parse(String requestUrl) {
+        return new UrlResult(url.equals(requestUrl));
     }
 }

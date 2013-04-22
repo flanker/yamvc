@@ -2,7 +2,7 @@ package com.chaojiwudi.mvc.router;
 
 import com.chaojiwudi.mvc.router.action.RouterAction;
 import com.chaojiwudi.mvc.router.action.Rule;
-import com.chaojiwudi.mvc.router.matcher.ParseResult;
+import com.chaojiwudi.mvc.router.matcher.UrlResult;
 import com.chaojiwudi.mvc.router.matcher.UrlMatcher;
 
 public class Route {
@@ -15,7 +15,7 @@ public class Route {
         rule = new Rule(clazz, action);
     }
 
-    public ParseResult parse(String requestUrl) {
+    public UrlResult parse(String requestUrl) {
         return urlMatcher.parse(requestUrl);
     }
 

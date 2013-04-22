@@ -9,8 +9,6 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import testPackage.controller.TestController;
 import testPackage.controller.UsersController;
 
-import static org.junit.Assert.assertEquals;
-
 public class RouterTest {
 
     private Router router;

@@ -1,8 +1,8 @@
 package com.chaojiwudi.mvc.router;
 
 import com.chaojiwudi.mvc.controller.Controller;
+import com.chaojiwudi.mvc.router.action.RouteParseResult;
 import com.chaojiwudi.mvc.router.action.RouterAction;
-import com.chaojiwudi.mvc.router.action.Rule;
 import core.IocContainer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,14 +23,9 @@ public class Router {
     }
 
     public void run(HttpServletRequest request, HttpServletResponse response) {
-        Rule rule = routers.parse(request.getPathInfo());
-        try {
-            Controller controller = (Controller) container.getBean(rule.getClazz());
-            controller.setRequest(request);
-            controller.setResponse(response);
-            rule.getAction().run(controller);
-        } catch (Exception e) {
-            e.printStackTrace();
+        RouteParseResult result = routers.parse(request.getPathInfo());
+        if (result != null) {
+            result.execute(container, request, response);
         }
     }
 

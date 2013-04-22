@@ -7,10 +7,12 @@ import java.io.IOException;
 public class PostsController extends Controller {
 
     public void get() throws IOException {
-        response.getWriter().write("Hello Posts Get!");
+        String id = params.get("id");
+        response.getWriter().write("Hello Posts Get " + id + " !");
     }
 
     public void edit() throws IOException {
-        response.getWriter().write("Hello Posts Edit!");
+        String id = params.get("id");
+        response.getWriter().write("Hello Posts Edit " + id + " !");
     }
 }
