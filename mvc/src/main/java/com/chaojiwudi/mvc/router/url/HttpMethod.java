@@ -1,8 +1,7 @@
 package com.chaojiwudi.mvc.router.url;
 
 public enum HttpMethod {
-    Get("GET"),
-    Post("POST");
+    Get("GET"), Post("POST"), Put("PUT"), Delete("DELETE");
 
     private String method;
 

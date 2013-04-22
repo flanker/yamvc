@@ -12,9 +12,9 @@ public class Routes {
 
     List<Route> routers = new ArrayList<Route>();
 
-    public void put(String routePath, Class clazz, RouterAction action) {
-        routers.add(new Route(routePath, clazz, action));
-    }
+//    public void put(HttpMethod method, String routePath, Class clazz, RouterAction action) {
+//        routers.add(new Route(routePath, clazz, action));
+//    }
 
     public <T> void put(HttpMethod method, String routePath, Class<T> clazz, RouterAction<T> action) {
         routers.add(new Route(method, routePath, clazz, action));
