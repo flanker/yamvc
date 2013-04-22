@@ -1,6 +1,7 @@
 package com.chaojiwudi.mvc.router.resource;
 
 import com.chaojiwudi.mvc.router.action.RouterAction;
+import com.chaojiwudi.mvc.router.resource.actions.ResourceAction;
 import com.chaojiwudi.mvc.router.url.HttpMethod;
 
 public class Convention<T> {
@@ -25,6 +26,6 @@ public class Convention<T> {
     }
 
     public RouterAction<T> getAction() {
-        return null;
+        return new ResourceAction<T>(this.action.name().toLowerCase());
     }
 }
