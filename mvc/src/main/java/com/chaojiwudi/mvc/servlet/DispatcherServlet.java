@@ -2,12 +2,15 @@ package com.chaojiwudi.mvc.servlet;
 
 import com.chaojiwudi.mvc.init.Initializer;
 import com.chaojiwudi.mvc.router.Router;
+import com.chaojiwudi.mvc.router.url.HttpMethod;
 import core.IocContainer;
 import core.IocContainerBuilder;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class DispatcherServlet extends HttpServlet {
 
@@ -31,19 +34,26 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        dispatch(request, response, HttpMethod.Get);
+        dispatch(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        dispatch(request, response, HttpMethod.Post);
+        dispatch(request, response);
     }
 
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, HttpMethod method) {
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) {
+        dispatch(request, response);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
+        dispatch(request, response);
+    }
+
+    private void dispatch(HttpServletRequest request, HttpServletResponse response) {
         router.run(request, response);
     }
 
-    private enum HttpMethod {
-        Get, Post
-    }
 }
