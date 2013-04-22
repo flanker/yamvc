@@ -34,6 +34,8 @@ project(":mvc") {
     dependencies {
         compile 'javax.servlet:servlet-api:3.0-alpha-1'
         compile files('../../wheel1/build/libs/wheel1.jar')
+        testCompile 'org.springframework:spring-core:2.0.8'
+        testCompile 'org.springframework:spring-mock:2.0.8'
     }
 }
 

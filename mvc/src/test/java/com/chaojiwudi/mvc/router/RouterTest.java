@@ -3,32 +3,28 @@ package com.chaojiwudi.mvc.router;
 import core.IocContainer;
 import core.IocContainerBuilder;
 import org.junit.Before;
-import testPackage.controller.TestController;
 import org.junit.Test;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.stub;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import testPackage.controller.TestController;
 
 public class RouterTest {
 
     private Router router;
-    private HttpServletRequest request;
-    private HttpServletResponse response;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
 
     @Before
     public void setUp() throws Exception {
         IocContainer container = new IocContainerBuilder().build();
         router = new Router(container);
-        request = mock(HttpServletRequest.class);
-        response = mock(HttpServletResponse.class);
+        request = new MockHttpServletRequest();
+        response = new MockHttpServletResponse();
     }
 
     @Test
     public void test_router() throws Exception {
-        stub(request.getPathInfo()).toReturn("/");
+        request.setPathInfo("/");
 
         router.register("/", TestController.class, TestController::testAction);
 
