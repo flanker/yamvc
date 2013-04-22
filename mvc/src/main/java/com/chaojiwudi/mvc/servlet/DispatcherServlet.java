@@ -2,15 +2,12 @@ package com.chaojiwudi.mvc.servlet;
 
 import com.chaojiwudi.mvc.init.Initializer;
 import com.chaojiwudi.mvc.router.Router;
-import com.chaojiwudi.mvc.router.url.HttpMethod;
 import core.IocContainer;
 import core.IocContainerBuilder;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class DispatcherServlet extends HttpServlet {
 
