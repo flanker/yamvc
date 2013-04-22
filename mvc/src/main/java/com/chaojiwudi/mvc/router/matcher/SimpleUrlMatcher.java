@@ -1,6 +1,6 @@
 package com.chaojiwudi.mvc.router.matcher;
 
-public class SimpleUrlMatcher implements UrlMatcher {
+public class SimpleUrlMatcher extends UrlMatcher {
 
     private String url;
 

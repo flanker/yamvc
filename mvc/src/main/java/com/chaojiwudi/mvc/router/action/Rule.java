@@ -1,7 +1,5 @@
 package com.chaojiwudi.mvc.router.action;
 
-import com.chaojiwudi.mvc.router.action.RouterAction;
-
 public class Rule {
 
     private Class clazz;
