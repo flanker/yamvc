@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import testPackage.controller.TestController;
+import testPackage.controller.UsersController;
+
+import static org.junit.Assert.assertEquals;
 
 public class RouterTest {
 
@@ -23,10 +26,19 @@ public class RouterTest {
     }
 
     @Test
-    public void test_router() throws Exception {
+    public void test_basic_router() throws Exception {
         request.setPathInfo("/");
 
         router.register("/", TestController.class, TestController::testAction);
+
+        router.run(request, response);
+    }
+
+    @Test
+    public void test_router_with_param_in_path() throws Exception {
+        request.setPathInfo("/users/28");
+
+        router.register("/users/:id", UsersController.class, UsersController::get);
 
         router.run(request, response);
     }

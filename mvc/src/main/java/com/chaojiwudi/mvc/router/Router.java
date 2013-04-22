@@ -1,16 +1,17 @@
 package com.chaojiwudi.mvc.router;
 
 import com.chaojiwudi.mvc.controller.Controller;
+import com.chaojiwudi.mvc.router.action.RouterAction;
+import com.chaojiwudi.mvc.router.action.Rule;
 import core.IocContainer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 
 public class Router {
 
     private final IocContainer container;
-    HashMap<String, Rule> routers = new HashMap<String, Rule>();
+    private Routes routers = new Routes();
 
     public Router(IocContainer container) throws Exception {
         this.container = container;
@@ -18,11 +19,11 @@ public class Router {
 
     public <T> void register(String path, Class<T> clazz, RouterAction<T> action) {
         container.register(clazz);
-        routers.put(path, new Rule(clazz, action));
+        routers.put(path, clazz, action);
     }
 
     public void run(HttpServletRequest request, HttpServletResponse response) {
-        Rule rule = routers.get(request.getPathInfo());
+        Rule rule = routers.parse(request.getPathInfo());
         try {
             Controller controller = (Controller) container.getBean(rule.getClazz());
             controller.setRequest(request);

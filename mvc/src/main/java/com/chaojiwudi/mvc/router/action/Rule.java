@@ -1,4 +1,6 @@
-package com.chaojiwudi.mvc.router;
+package com.chaojiwudi.mvc.router.action;
+
+import com.chaojiwudi.mvc.router.action.RouterAction;
 
 public class Rule {
 
