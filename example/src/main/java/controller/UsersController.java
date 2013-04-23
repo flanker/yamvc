@@ -1,18 +1,19 @@
 package controller;
 
 import com.chaojiwudi.mvc.controller.Controller;
+import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
 
 import java.io.IOException;
 
 public class UsersController extends Controller {
 
-    public void get() throws IOException {
+    public ActionResult get() throws IOException {
         String id = params.get("id");
-        response.getWriter().write("You are getting user: " + id + " !");
+        return string("You are getting user: " + id + " !");
     }
 
-    public void update() throws IOException {
+    public ActionResult update() throws IOException {
         String id = params.get("id");
-        response.getWriter().write("You are updating user: " + id + " !");
+        return string("You are updating user: " + id + " !");
     }
 }

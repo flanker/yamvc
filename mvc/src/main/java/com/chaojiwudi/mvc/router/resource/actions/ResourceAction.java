@@ -1,6 +1,7 @@
 package com.chaojiwudi.mvc.router.resource.actions;
 
 import com.chaojiwudi.mvc.router.action.RouterAction;
+import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
 
 import java.lang.reflect.Method;
 
@@ -13,10 +14,10 @@ public class ResourceAction<T> implements RouterAction<T> {
     }
 
     @Override
-    public void run(T controller) throws Exception {
+    public ActionResult run(T controller) throws Exception {
         Class<?> clazz = controller.getClass();
         Method method = clazz.getMethod(action);
-        method.invoke(controller);
+        return (ActionResult) method.invoke(controller);
     }
 
 }

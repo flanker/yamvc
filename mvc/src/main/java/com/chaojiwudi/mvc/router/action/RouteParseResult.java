@@ -20,7 +20,7 @@ public class RouteParseResult {
     public void execute(IocContainer container, HttpServletRequest request, HttpServletResponse response) {
         try {
             Controller controller = createController(container, request, response);
-            rule.getAction().run(controller);
+            rule.getAction().run(controller).render(response);
         } catch (Exception e) {
             e.printStackTrace();
         }

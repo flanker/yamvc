@@ -1,8 +1,14 @@
 package com.chaojiwudi.mvc.controller;
 
+import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
+import com.chaojiwudi.mvc.router.action.actionResult.StringActionResult;
+import com.chaojiwudi.mvc.router.action.actionResult.ViewActionResult;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {
 
@@ -21,4 +27,26 @@ public class Controller {
     public void setParams(HashMap<String, String> params) {
         this.params = params;
     }
+
+    protected ActionResult view(Object model) {
+        String viewName = getName() + "/show";
+        return new ViewActionResult(viewName, model);
+    }
+
+    protected ActionResult view() {
+        String viewName = getName() + "/show";
+        return new ViewActionResult(viewName);
+    }
+
+    protected ActionResult string(String text) {
+        return new StringActionResult(text);
+    }
+
+    private String getName() {
+        Pattern pattern = Pattern.compile(".*\\.([A-Za-z]*)Controller");
+        Matcher matcher = pattern.matcher(this.getClass().getName());
+        matcher.matches();
+        return matcher.group(1).toLowerCase();
+    }
+
 }

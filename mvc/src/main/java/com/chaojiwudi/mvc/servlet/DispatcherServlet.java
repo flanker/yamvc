@@ -4,10 +4,13 @@ import com.chaojiwudi.mvc.init.Initializer;
 import com.chaojiwudi.mvc.router.Router;
 import core.IocContainer;
 import core.IocContainerBuilder;
+import org.apache.velocity.app.Velocity;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Properties;
 
 public class DispatcherServlet extends HttpServlet {
 
@@ -21,11 +24,24 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     @Override
-    public void init() {
+    public void init() throws ServletException {
         try {
             initializer.config(router);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        initVelocity();
+    }
+
+    private void initVelocity() throws ServletException {
+        String absoluteRootPath = this.getServletContext().getRealPath("/");
+        Properties properties = new Properties();
+        properties.setProperty("file.resource.loader.path", absoluteRootPath + "/WEB-INF/views/");
+        try {
+            Velocity.init(properties);
+        } catch (Exception e) {
+            throw new ServletException("init template engine config fail", e);
         }
     }
 

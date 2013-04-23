@@ -1,16 +1,18 @@
 package controller;
 
 import com.chaojiwudi.mvc.controller.Controller;
+import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
 
 import java.io.IOException;
 
 public class HomeController extends Controller {
 
-    public void index() throws IOException {
-        response.getWriter().write("Hello Home Index!");
+    public ActionResult index() throws IOException {
+        return string("Hello Home Index!");
     }
 
-    public void about() throws IOException  {
-        response.getWriter().write("Hello Home about!");
+    public ActionResult about() throws IOException  {
+        return view();
     }
+
 }
