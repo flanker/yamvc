@@ -14,7 +14,6 @@ public class ApplicationInitializer implements Initializer {
 
         router.resources("books", BooksController.class);
 
-        router.get("/posts/:id", PostsController.class, PostsController::get);
         router.get("/posts/:id/edit", PostsController.class, PostsController::edit);
         router.post("/posts/:id", PostsController.class, PostsController::update);
     }
