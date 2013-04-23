@@ -5,7 +5,10 @@
 <body>
     <h2>007 James Bond Books</h2>
     <h1>add</h1>
-    <input name="title" value="" />
+    <form action="../books" method="post">
+        <input name="title" value="" />
+        <input type="submit" />
+    </form>
     <a href="../books">back to list</a>
 </body>
 </html>

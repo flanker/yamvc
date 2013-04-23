@@ -1,6 +1,8 @@
 package com.chaojiwudi.mvc.controller;
 
+import com.chaojiwudi.mvc.router.action.RouterAction;
 import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
+import com.chaojiwudi.mvc.router.action.actionResult.RedirectActionResult;
 import com.chaojiwudi.mvc.router.action.actionResult.StringActionResult;
 import com.chaojiwudi.mvc.router.action.actionResult.ViewActionResult;
 
@@ -42,6 +44,10 @@ public class Controller {
         return new StringActionResult(text);
     }
 
+    protected <T> ActionResult redirect(Class<T> clazz, RouterAction<T> action) {
+        return new RedirectActionResult(request, clazz, action);
+    }
+
     private String getName() {
         Pattern pattern = Pattern.compile(".*\\.([A-Za-z]*)Controller");
         Matcher matcher = pattern.matcher(this.getClass().getName());
@@ -53,5 +59,4 @@ public class Controller {
         StackTraceElement element = Thread.currentThread().getStackTrace()[3];
         return element.getMethodName();
     }
-
 }

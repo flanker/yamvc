@@ -1,7 +1,7 @@
 package controller;
 
-import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
 import com.chaojiwudi.mvc.controller.Controller;
+import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
 import model.Book;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class BooksController extends Controller {
     }
 
     public ActionResult create() throws IOException {
-        return string("Books Create!");
+        return redirect(BooksController.class, BooksController::show);
     }
 
     public ActionResult show() {
