@@ -12,6 +12,7 @@ public class StringActionResult implements ActionResult {
 
     @Override
     public void render(HttpServletResponse response) throws Exception {
+        response.setContentType("text/plain");
         response.getWriter().write(text);
     }
 

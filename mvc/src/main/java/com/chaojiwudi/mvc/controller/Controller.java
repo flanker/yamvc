@@ -29,12 +29,12 @@ public class Controller {
     }
 
     protected ActionResult view(Object model) {
-        String viewName = getName() + "/show";
+        String viewName = getName() + "/" + getActionName();
         return new ViewActionResult(viewName, model);
     }
 
     protected ActionResult view() {
-        String viewName = getName() + "/show";
+        String viewName = getName() + "/" + getActionName();
         return new ViewActionResult(viewName);
     }
 
@@ -47,6 +47,11 @@ public class Controller {
         Matcher matcher = pattern.matcher(this.getClass().getName());
         matcher.matches();
         return matcher.group(1).toLowerCase();
+    }
+
+    private String getActionName() {
+        StackTraceElement element = Thread.currentThread().getStackTrace()[3];
+        return element.getMethodName();
     }
 
 }

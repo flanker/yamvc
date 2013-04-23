@@ -1,0 +1,11 @@
+<html>
+<head>
+    <title>007 James Bond Books</title>
+</head>
+<body>
+    <h2>007 James Bond Books</h2>
+    <h1>add</h1>
+    <input name="title" value="" />
+    <a href="../books">back to list</a>
+</body>
+</html>

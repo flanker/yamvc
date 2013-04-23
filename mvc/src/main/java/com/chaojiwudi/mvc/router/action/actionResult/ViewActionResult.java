@@ -31,6 +31,7 @@ public class ViewActionResult implements ActionResult {
 
     @Override
     public void render(HttpServletResponse response) throws Exception {
+        response.setContentType("text/html");
         template.merge(context, response.getWriter());
         response.getWriter().flush();
     }

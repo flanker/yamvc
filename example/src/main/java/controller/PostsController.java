@@ -9,11 +9,16 @@ public class PostsController extends Controller {
 
     public ActionResult get() throws IOException {
         String id = params.get("id");
-        return string("Hello Posts Get " + id + " !");
+        return string("Test Posts Get " + id + " !");
     }
 
     public ActionResult edit() throws IOException {
         String id = params.get("id");
-        return string("Hello Posts Edit " + id + " !");
+        return string("Test Posts Edit " + id + " !");
+    }
+
+    public ActionResult update() throws IOException {
+        String id = params.get("id");
+        return string("Test Posts Update " + id + " !");
     }
 }

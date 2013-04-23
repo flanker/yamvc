@@ -5,15 +5,17 @@ import com.chaojiwudi.mvc.controller.Controller;
 import model.Book;
 
 import java.io.IOException;
+import java.util.List;
 
 public class BooksController extends Controller {
 
     public ActionResult index() throws IOException {
-        return string("Books Index!");
+        List<Book> books = Book.findAll();
+        return view(books);
     }
 
     public ActionResult add() throws IOException {
-        return string("Books Add!");
+        return view();
     }
 
     public ActionResult create() throws IOException {
@@ -26,8 +28,8 @@ public class BooksController extends Controller {
     }
 
     public ActionResult edit() throws IOException {
-        String id = params.get("id");
-        return string("Books Edit id " + id + "!");
+        Book book = Book.findById(params.get("id"));
+        return view(book);
     }
 
     public ActionResult update() throws IOException {
