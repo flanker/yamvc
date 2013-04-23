@@ -4,21 +4,20 @@ import com.chaojiwudi.mvc.controller.Controller;
 import com.chaojiwudi.mvc.router.action.actionResult.ActionResult;
 import model.Book;
 
-import java.io.IOException;
 import java.util.List;
 
 public class BooksController extends Controller {
 
-    public ActionResult index() throws IOException {
+    public ActionResult index() {
         List<Book> books = Book.findAll();
         return view(books);
     }
 
-    public ActionResult add() throws IOException {
+    public ActionResult add() {
         return view();
     }
 
-    public ActionResult create() throws IOException {
+    public ActionResult create() {
         return redirect(BooksController.class, BooksController::show);
     }
 
@@ -27,17 +26,17 @@ public class BooksController extends Controller {
         return view(book);
     }
 
-    public ActionResult edit() throws IOException {
+    public ActionResult edit() {
         Book book = Book.findById(params.get("id"));
         return view(book);
     }
 
-    public ActionResult update() throws IOException {
+    public ActionResult update() {
         String id = params.get("id");
         return string("Books Update id " + id + "!");
     }
 
-    public ActionResult destroy() throws IOException {
+    public ActionResult destroy() {
         String id = params.get("id");
         return string("Books Destroy id " + id + "!");
     }
